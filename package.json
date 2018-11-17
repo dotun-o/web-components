@@ -4,7 +4,7 @@
   "description": "A collection of web components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel src --out-file ./dist/web-components.js"
   },
   "keywords": [
     "web",
@@ -15,7 +15,12 @@
   "author": "Dotun Ogunsakin",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "babel-cli": "^6.26.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
   }
 }
