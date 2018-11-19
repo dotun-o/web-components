@@ -92,10 +92,12 @@ class DNMeter extends HTMLElement {
     connectedCallback() {
         console.log("<dn-meter> element added to page.");
         this.updateView();
+        window.addEventListener("resize", this.updateViewOnWindowResize.bind(this), false);
     }
 
     disconnectedCallback() {
         console.log("<dn-meter> element removed from page.");
+        window.removeEventListener("resize", this.updateViewOnWindowResize.bind(this), false);
     }
 
     adoptedCallback() {
@@ -123,6 +125,10 @@ class DNMeter extends HTMLElement {
         shadow.querySelector(".bar").innerHTML = `<span>${prefix}${current}${postfix}</span>`;
 
         shadow.querySelector(".stats").innerHTML = `<span>${prefix}${min}${postfix}</span><span>${prefix}${max}${postfix}</span>`;
+    }
+
+    updateViewOnWindowResize(e) {
+        this.updateView();
     }
 }
 

@@ -72,11 +72,13 @@ function (_HTMLElement) {
     value: function connectedCallback() {
       console.log("<dn-meter> element added to page.");
       this.updateView();
+      window.addEventListener("resize", this.updateViewOnWindowResize.bind(this), false);
     }
   }, {
     key: "disconnectedCallback",
     value: function disconnectedCallback() {
       console.log("<dn-meter> element removed from page.");
+      window.removeEventListener("resize", this.updateViewOnWindowResize.bind(this), false);
     }
   }, {
     key: "adoptedCallback",
@@ -104,6 +106,11 @@ function (_HTMLElement) {
       shadow.querySelector(".bar").style.width = "".concat(current / max * width, "px");
       shadow.querySelector(".bar").innerHTML = "<span>".concat(prefix).concat(current).concat(postfix, "</span>");
       shadow.querySelector(".stats").innerHTML = "<span>".concat(prefix).concat(min).concat(postfix, "</span><span>").concat(prefix).concat(max).concat(postfix, "</span>");
+    }
+  }, {
+    key: "updateViewOnWindowResize",
+    value: function updateViewOnWindowResize(e) {
+      this.updateView();
     }
   }]);
 
