@@ -45,7 +45,7 @@ function (_HTMLElement) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DNMeter).call(this));
     var style = document.createElement('style');
-    style.textContent = "* {\n            margin: 0;\n            border: 0;\n            padding: 0;\n            box-sizing: border-box;\n            transition: 0.2s;\n        }\n        .wrapper {\n            position: relative;\n        }\n        .track, .bar {\n            height: 50px;\n        }\n        .track {\n            border-radius: 10px;\n        }\n        .bar {\n            border-top-left-radius: 10px;\n            border-bottom-left-radius: 10px;\n            position: absolute;\n            top: 0;\n            left: 0;\n        }\n        .cool .track {\n            background-color: #44484C;\n        }\n        .cool .track:hover {\n            background-color: #505559;\n        }\n        .cool .bar {\n            background-color: #17c3e5;\n        }\n        .cool .bar:hover {\n            background-color: #00ffff;\n        }\n        .warm .track {\n            background-color: #4c4744;\n        }\n        .warm .track:hover {\n            background-color: #595350;\n        }\n        .warm .bar {\n            background-color: #ffaa00;\n        }\n        .warm .bar:hover {\n            background-color: #ffea00;\n        }";
+    style.textContent = "* {\n            margin: 0;\n            border: 0;\n            padding: 0;\n            box-sizing: border-box;\n            transition: 0.2s;\n        }\n        .wrapper {\n            position: relative;\n        }\n        .track, .bar {\n            height: 50px;\n        }\n        .track {\n            border-radius: 5px;\n        }\n        .bar {\n            display: flex;\n            align-items: center;\n            justify-content: flex-end;\n            border-top-left-radius: 5px;\n            border-bottom-left-radius: 5px;\n            padding: 10px;\n            position: absolute;\n            top: 0;\n            left: 0;\n        }\n        .cool .track {\n            background-color: #44484C;\n        }\n        .cool .track:hover {\n            background-color: #505559;\n        }\n        .cool .bar {\n            color: #44484C;\n        }\n        .cool .bar {\n            background-color: #17c3e5;\n        }\n        .cool .bar:hover {\n            background-color: #00ffff;\n        }\n        .warm .track {\n            background-color: #4c4744;\n        }\n        .warm .track:hover {\n            background-color: #595350;\n        }\n        .warm .bar {\n            color: #4c4744;\n        }\n        .warm .bar {\n            background-color: #ffaa00;\n        }\n        .warm .bar:hover {\n            background-color: #ffea00;\n        }\n        .stats {\n            display: flex;\n            justify-content: space-between;\n        }";
 
     var shadow = _this.attachShadow({
       mode: "open"
@@ -54,11 +54,14 @@ function (_HTMLElement) {
     var wrapper = document.createElement("div");
     var track = document.createElement("div");
     var bar = document.createElement("div");
+    var stats = document.createElement("div");
     wrapper.setAttribute("class", "wrapper");
     track.setAttribute("class", "track");
     bar.setAttribute("class", "bar");
+    stats.setAttribute("class", "stats");
     wrapper.appendChild(track);
     wrapper.appendChild(bar);
+    wrapper.appendChild(stats);
     shadow.appendChild(style);
     shadow.appendChild(wrapper);
     return _this;
@@ -91,11 +94,16 @@ function (_HTMLElement) {
     value: function updateView() {
       var shadow = this.shadowRoot;
       var themeClass = this.getAttribute("theme") || "cool";
+      var min = parseInt(this.getAttribute("min")) || 0;
       var current = parseInt(this.getAttribute("current")) || 50;
       var max = parseInt(this.getAttribute("max")) || 100;
+      var prefix = this.getAttribute("prefix") || "";
+      var postfix = this.getAttribute("postfix") || "";
       var width = parseInt(shadow.querySelector(".wrapper").clientWidth);
       shadow.querySelector(".wrapper").setAttribute("class", "wrapper ".concat(themeClass));
       shadow.querySelector(".bar").style.width = "".concat(current / max * width, "px");
+      shadow.querySelector(".bar").innerHTML = "<span>".concat(prefix).concat(current).concat(postfix, "</span>");
+      shadow.querySelector(".stats").innerHTML = "<span>".concat(prefix).concat(min).concat(postfix, "</span><span>").concat(prefix).concat(max).concat(postfix, "</span>");
     }
   }]);
 

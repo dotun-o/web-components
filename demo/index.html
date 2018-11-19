@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <script src="../dist/web-components.js"></script>
+
+    <style>
+        body {
+            background: #2e3033;
+            font-family: sans-serif;
+            color: #cfdae5;
+        }
+    </style>
     
     <title>Web Components Demo</title>
 </head>
-<body style="background: #2e3033; color: #cfdae5;">
-    <p>Some text</p>
-    <dn-meter min="0" current="30" max="100" theme="cool"></dn-meter>
+<body>
+    <h1>Web Components (v1.0.0) Demo</h1>
+    <h2>Cool Theme</h2>
+    <dn-meter min="0" current="30" max="100" postfix="km" theme="cool"></dn-meter>
 
-    <p>Some text</p>
-    <dn-meter min="0" current="30" max="100" theme="warm"></dn-meter>
+    <h2>Warm Theme</h2>
+    <dn-meter min="0" current="2350" max="5000" prefix="$" theme="warm"></dn-meter>
 </body>
 </html>

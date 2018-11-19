@@ -22,11 +22,15 @@ class DNMeter extends HTMLElement {
             height: 50px;
         }
         .track {
-            border-radius: 10px;
+            border-radius: 5px;
         }
         .bar {
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding: 10px;
             position: absolute;
             top: 0;
             left: 0;
@@ -36,6 +40,9 @@ class DNMeter extends HTMLElement {
         }
         .cool .track:hover {
             background-color: #505559;
+        }
+        .cool .bar {
+            color: #44484C;
         }
         .cool .bar {
             background-color: #17c3e5;
@@ -50,23 +57,33 @@ class DNMeter extends HTMLElement {
             background-color: #595350;
         }
         .warm .bar {
+            color: #4c4744;
+        }
+        .warm .bar {
             background-color: #ffaa00;
         }
         .warm .bar:hover {
             background-color: #ffea00;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
         }`
 
         const shadow = this.attachShadow({mode: "open"});
         const wrapper = document.createElement("div");
         const track = document.createElement("div");
         const bar = document.createElement("div");
+        const stats = document.createElement("div");
 
         wrapper.setAttribute("class", "wrapper");
         track.setAttribute("class", "track");
         bar.setAttribute("class", "bar");
+        stats.setAttribute("class", "stats");
 
         wrapper.appendChild(track);
         wrapper.appendChild(bar);
+        wrapper.appendChild(stats);
 
         shadow.appendChild(style);
         shadow.appendChild(wrapper);
@@ -93,13 +110,19 @@ class DNMeter extends HTMLElement {
     updateView() {
         const shadow = this.shadowRoot;
         const themeClass = this.getAttribute("theme") || "cool";
+        const min = parseInt(this.getAttribute("min")) || 0;
         const current = parseInt(this.getAttribute("current")) || 50;
         const max = parseInt(this.getAttribute("max")) || 100;
+        const prefix = this.getAttribute("prefix") || "";
+        const postfix = this.getAttribute("postfix") || "";
         const width = parseInt(shadow.querySelector(".wrapper").clientWidth);
 
         shadow.querySelector(".wrapper").setAttribute("class", `wrapper ${themeClass}`);
 
         shadow.querySelector(".bar").style.width = `${(current / max) * width}px`;
+        shadow.querySelector(".bar").innerHTML = `<span>${prefix}${current}${postfix}</span>`;
+
+        shadow.querySelector(".stats").innerHTML = `<span>${prefix}${min}${postfix}</span><span>${prefix}${max}${postfix}</span>`;
     }
 }
 
