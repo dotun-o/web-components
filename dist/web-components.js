@@ -96,12 +96,12 @@ function (_HTMLElement) {
     value: function updateView() {
       var shadow = this.shadowRoot;
       var themeClass = this.getAttribute("theme") || "cool";
-      var min = parseInt(this.getAttribute("min")) || 0;
-      var current = parseInt(this.getAttribute("current")) || 50;
-      var max = parseInt(this.getAttribute("max")) || 100;
+      var min = parseFloat(this.getAttribute("min")) || 0;
+      var current = parseFloat(this.getAttribute("current")) || 50;
+      var max = parseFloat(this.getAttribute("max")) || 100;
       var prefix = this.getAttribute("prefix") || "";
       var postfix = this.getAttribute("postfix") || "";
-      var width = parseInt(shadow.querySelector(".wrapper").clientWidth);
+      var width = parseFloat(shadow.querySelector(".wrapper").clientWidth);
       shadow.querySelector(".wrapper").setAttribute("class", "wrapper ".concat(themeClass));
       shadow.querySelector(".bar").style.width = "".concat(current / max * width, "px");
       shadow.querySelector(".bar").innerHTML = "<span>".concat(prefix).concat(current).concat(postfix, "</span>");

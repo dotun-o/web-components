@@ -112,12 +112,12 @@ class DNMeter extends HTMLElement {
     updateView() {
         const shadow = this.shadowRoot;
         const themeClass = this.getAttribute("theme") || "cool";
-        const min = parseInt(this.getAttribute("min")) || 0;
-        const current = parseInt(this.getAttribute("current")) || 50;
-        const max = parseInt(this.getAttribute("max")) || 100;
+        const min = parseFloat(this.getAttribute("min")) || 0;
+        const current = parseFloat(this.getAttribute("current")) || 50;
+        const max = parseFloat(this.getAttribute("max")) || 100;
         const prefix = this.getAttribute("prefix") || "";
         const postfix = this.getAttribute("postfix") || "";
-        const width = parseInt(shadow.querySelector(".wrapper").clientWidth);
+        const width = parseFloat(shadow.querySelector(".wrapper").clientWidth);
 
         shadow.querySelector(".wrapper").setAttribute("class", `wrapper ${themeClass}`);
 
