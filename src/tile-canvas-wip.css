@@ -1,0 +1,11 @@
+.tile-canvas {
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  flex: 1 0 25%;
+}
