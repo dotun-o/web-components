@@ -1,5 +1,5 @@
 .tile-canvas {
-  border-radius: 10px;
+  border-radius: 10px; /* Still need to resolve short-count rows not reaching edge, and roundness is visually lost */
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -7,5 +7,5 @@
 }
 
 .tile {
-  flex: 1 0 25%;
+  flex: 0 0 25%; /* flex-basis should be computed by a column count attribute e.g. `${(100 / this.columns)}%` */
 }
