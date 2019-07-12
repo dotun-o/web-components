@@ -15,12 +15,13 @@
   "author": "Dotun Ogunsakin",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "babel-cli": "^6.26.0"
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.4.4"
   }
 }
